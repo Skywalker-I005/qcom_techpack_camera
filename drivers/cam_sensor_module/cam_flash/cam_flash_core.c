@@ -535,12 +535,6 @@ static int cam_flash_low(
 	}
 	//ASUS_BSP --- Shianliang fix torch current changed after switch camera
 
-	for (i = 0; i < flash_ctrl->flash_num_sources; i++)
-		if (flash_ctrl->flash_trigger[i])
-			cam_res_mgr_led_trigger_event(
-				flash_ctrl->flash_trigger[i],
-				LED_OFF);
-
 	rc = cam_flash_ops(flash_ctrl, flash_data,
 		CAMERA_SENSOR_FLASH_OP_FIRELOW);
 	if (rc)

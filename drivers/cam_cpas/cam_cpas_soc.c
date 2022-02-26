@@ -466,8 +466,6 @@ static int cam_cpas_parse_node_tree(struct cam_cpas *cpas_core,
 	return 0;
 }
 
-
-
 int cam_cpas_get_hw_features(struct platform_device *pdev,
 	struct cam_cpas_private_soc *soc_private)
 {
@@ -633,11 +631,6 @@ int cam_cpas_get_custom_dt_info(struct cam_hw_info *cpas_hw,
 	}
 
 	of_node = pdev->dev.of_node;
-	
-	#if defined ASUS_ZS673KS_PROJECT || defined ASUS_PICASSO_PROJECT
-	#else
-	soc_private->feature_mask = 0xFFFFFFFF;
-	#endif
 
 	rc = of_property_read_string(of_node, "arch-compat",
 		&soc_private->arch_compat);
@@ -648,11 +641,6 @@ int cam_cpas_get_custom_dt_info(struct cam_hw_info *cpas_hw,
 	}
 
 	cam_cpas_get_hw_features(pdev, soc_private);
-	
-	#if defined ASUS_ZS673KS_PROJECT || defined ASUS_PICASSO_PROJECT
-	#else
-	cam_cpas_get_hw_fuse(pdev, soc_private);
-	#endif
 
 	soc_private->camnoc_axi_min_ib_bw = 0;
 	rc = of_property_read_u64(of_node,

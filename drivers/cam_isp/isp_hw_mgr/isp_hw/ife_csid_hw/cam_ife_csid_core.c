@@ -5105,10 +5105,10 @@ irqreturn_t cam_ife_csid_irq(int irq_num, void *data)
 			CAM_ERR_RATE_LIMIT(CAM_ISP,
 				"CSID:%d ERROR_CRC CPHY: Long pkt payload CRC mismatch",
 				csid_hw->hw_intf->hw_idx);
-			csid_hw->error_irq_count++;
 #if defined ASUS_ZS673KS_PROJECT || defined ASUS_PICASSO_PROJECT
 			g_cam_csi_check = CSID_ERROR_CRC;
 #endif
+			csid_hw->error_irq_count++;
 			non_fatal_detected = true;
 		}
 		if (irq_status[CAM_IFE_CSID_IRQ_REG_RX] &
